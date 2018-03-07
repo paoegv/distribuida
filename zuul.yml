@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: zuul
+
+server:
+  port: 2224
+
+zuul:
+  ignoredServices: '*'
+  prefix: /api
+  routes:
+    artistas:
+      path: /singer/**
+      serviceId: artistas
+      strip-prefix: false
+    albums: 
+      path: /album/**
+      serviceId: artistas
+      strip-prefix: false
+    instrumentos:
+      path: /instrument/**
+      serviceId: instrumentos
+      strip-prefix: false
+      
+eureka:
+  client:
+    service-url:
+      default-zone: http://eureka:8761/eureka/
+
+endpoints:
+  trace:
+sensitive: false
